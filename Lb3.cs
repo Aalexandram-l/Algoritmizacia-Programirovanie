@@ -83,7 +83,7 @@ class Programm3
         for (int i = 0; i < n; i++)
         {
             int number = Convert.ToInt32(Console.ReadLine());
-            if (number % 2 == 0)
+            if (Math.Abs(number) % 2 == 0)
             {
                 cursum += number;
                 curEmpty = false;
