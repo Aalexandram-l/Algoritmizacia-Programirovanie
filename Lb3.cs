@@ -75,7 +75,7 @@ class Programm3
     static void Main()
     {
         int n = Convert.ToInt32(Console.ReadLine());
-        int maxsum = 0;
+        int maxsum = -1000000;
         bool maxEmpty = true;
         int cursum = 0;
         bool curEmpty = true;
