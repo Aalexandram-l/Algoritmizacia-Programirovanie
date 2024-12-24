@@ -41,8 +41,9 @@ class Programm
         Console.WriteLine($"Самый частый символ: {character} - {maxCount}");
     }
 }
-2.
+2.!
 using System;
+using static System.Net.Mime.MediaTypeNames;
 class Programm
 {
     static void Main()
@@ -50,18 +51,20 @@ class Programm
         string tex = Console.ReadLine();
         string text = tex.ToLower();
         int maximum = 0;
-        string alf = "qwertyuiopsdfghjklzxvnm";
-        foreach(char c in alf)
+        string alf = "qwertyuiopasdfghjklzxcvbnm";
+        text = text.Replace("abc", "1");
+        foreach (char c in alf)
         {
             text = text.Replace(c, ' ');
         }
         Console.WriteLine(text);
+        
         string[] newtext = text.Split(' ');
         for (int i = 0; i < newtext.Length; i++)
         {
             if (newtext[i].Length > maximum)
             {
-                maximum = newtext[i].Length;
+                maximum = newtext[i].Length*3;
             }
         }
         Console.WriteLine(maximum);
