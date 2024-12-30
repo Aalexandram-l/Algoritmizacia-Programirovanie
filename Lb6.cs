@@ -1,14 +1,19 @@
 ﻿/*
  28.10
 лб
-задание
 массив двумерный н*м
+
+задание 1
 необходимо переставить строку с мин элементом со строкой с макс элементом
 минимум и макс одни
+
 задание 2
-необходимо определить точки минимакса
+необходимо определить  массиве точки минимакса (число минимальное в строке и максимальное в столбце
+или наоборот число максимальное в строке и минимальное в столбце)
+
 задание 3
 необходимо выдать пары номеров строк состоящих из одинаковых элементов(нельзя сортировать)
+
 
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -90,13 +95,45 @@ class Programm1
     }
 }
 
-2.
+
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 class Programm2
 {
+    private static void SaddlePoints(int[,] array)
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                if (!IsMinInRow(array, i, j) || !IsMaxInCol(array, i, j)) continue;
+                Console.WriteLine("    Элемент {0} является минимаксом.", array[i, j]);
+                Console.WriteLine("Строка: {0}\tстолбец: {1}", i + 1, j + 1);
+            }
+        }
+    }
+
+    private static bool IsMaxInCol(int[,] array, int i, int j)
+    {
+        for (int k = 0; k < array.GetLength(0); k++)
+        {
+            if (array[k, j] > array[i, j])
+                return false;
+        }
+        return true;
+    }
+
+    private static bool IsMinInRow(int[,] array, int i, int j)
+    {
+        for (int k = 0; k < array.GetLength(1); k++)
+        {
+            if (array[i, k] < array[i, j])
+                return false;
+        }
+        return true;
+    }
 
     static void Main()
     {
@@ -114,72 +151,12 @@ class Programm2
                 A[i, j] = Convert.ToInt32(Console.ReadLine());
             }
         }
+        SaddlePoints(A);
         
-        int min = 100000;
-        int max = -1;
-        int [] Mini = new int[n], Maxi= new int [n];
-        
-        for (int i = 0; i < n; i++)
-        {
-            min = 100000;
-            max = -1;
 
-            for (int j = 0; j < m; j++)
-            {
-                if (A[i, j] <= min)
-                {
-                    min = A[i, j];
-                }
-                if (A[i, j] >= max)
-                {
-                    max = A[i, j];
-                }
-                
-            }
-            Mini[i] = min;
-            Maxi[i] = max;
-            Console.WriteLine();
-        }
-        Console.WriteLine(" n:   min:  max:");
-        for (int k = 0; k < n; k++)
-        {
-            Console.WriteLine("{0,2}){1,6}{2,6}", k + 1, Mini[k], Maxi[k]);
-        }
-  
-        
-        int minc = 100000;
-        int maxc = -1;
-        int[] Minic = new int[m], Maxic = new int[m];
-        for (int i = 0; i < m; i++)
-        {
-            minc = 100000;
-            maxc = -1;
-
-            for (int j = 0; j < n; j++)
-            {
-                if (A[j, i] <= minc)
-                {
-                    minc = A[j, i];
-                }
-                if (A[j, i] >= maxc)
-                {
-                    maxc = A[j, i];
-                }
-
-            }
-            Minic[i] = minc;
-            Maxic[i] = maxc;
-            Console.WriteLine();
-        }
-        Console.WriteLine(" m:   min:  max:");
-        for (int k = 0; k < m; k++)
-        {
-            Console.WriteLine("{0,2}){1,6}{2,6}", k + 1, Minic[k], Maxic[k]);
-        }
-  
-        
     }
 }
+
 3.
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -258,5 +235,11 @@ class Programm3
     }
 }
 
-*/
 
+
+
+
+
+
+
+*/
