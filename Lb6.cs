@@ -14,7 +14,7 @@
 задание 3
 необходимо выдать пары номеров строк состоящих из одинаковых элементов(нельзя сортировать)
 
-
+1
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
@@ -95,7 +95,7 @@ class Programm1
     }
 }
 
-
+2
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
