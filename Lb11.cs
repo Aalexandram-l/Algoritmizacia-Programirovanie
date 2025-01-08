@@ -30,7 +30,7 @@ class Train
 
     public override string ToString()
     {
-        return $"Ïîåçä {TrainNumber} äî {Destination} îòïðàâëÿåòñÿ â {DepartureTime}";
+        return $"Поезд {TrainNumber} до {Destination} отправляется в {DepartureTime}";
     }
 }
 
@@ -56,7 +56,7 @@ class Station
 
         if (trainsAfter.Any())
         {
-            Console.WriteLine($"Ïîåçäà, îòïðàâëÿþùèåñÿ ïîñëå {time}:");
+            Console.WriteLine($"Поезда, отправляющиеся после {time}:");
             foreach (var train in trainsAfter)
             {
                 Console.WriteLine(train);
@@ -64,7 +64,7 @@ class Station
         }
         else
         {
-            Console.WriteLine($"Íåò ïîåçäîâ, îòïðàâëÿþùèõñÿ ïîñëå {time}.");
+            Console.WriteLine($"Нет поездов, отправляющихся после {time}.");
         }
     }
 }
@@ -79,11 +79,12 @@ class Program
         while (true)
         {
             Console.Clear();
-            Console.WriteLine("Ìåíþ:");
-            Console.WriteLine("1. Çàïîëíåíèå èíôîðìàöèè î ïîåçäàõ");
-            Console.WriteLine("2. Âûâîä íà ýêðàí èíôîðìàöèè î ïîåçäàõ, îòïðàâëÿþùèõñÿ ïîñëå ââåäåííîãî ñ êëàâèàòóðû âðåìåíè");
-            Console.WriteLine("3. Âûõîä");
-            Console.Write("Âûáåðèòå ïóíêò ìåíþ: ");
+            Console.Clear();
+            Console.WriteLine("Меню:");
+            Console.WriteLine("1. Заполнение информации о поездах");
+            Console.WriteLine("2. Вывод на экран информации о поездах, отправляющихся после введенного с клавиатуры времени");
+            Console.WriteLine("3. Выход");
+            Console.Write("Выберите пункт меню: ");
 
             string choice = Console.ReadLine();
 
@@ -98,17 +99,17 @@ class Program
                 case "3":
                     return;
                 default:
-                    Console.WriteLine("Íåâåðíûé âûáîð! Ïîïðîáóéòå ñíîâà.");
+                    Console.WriteLine("Неверный выбор! Попробуйте снова.");
                     break;
             }
 
-            Console.WriteLine("Íàæìèòå ëþáóþ êëàâèøó äëÿ ïðîäîëæåíèÿ...");
+            Console.WriteLine("Нажмите любую клавишу для продолжения...");
             Console.ReadKey();
         }
     }
     static void FillTrains()
     {
-        Console.Write("Ââåäèòå êîëè÷åñòâî ïîåçäîâ: ");
+        Console.Write("Введите количество поездов: ");
         int trainCount;
         if (int.TryParse(Console.ReadLine(), out trainCount) && trainCount > 0)
         {
@@ -116,15 +117,15 @@ class Program
             for (int i = 0; i < trainCount; i++)
             {
 
-                Console.WriteLine($"Ââåäèòå äàííûå äëÿ ïîåçäà {i + 1}:");
+                Console.WriteLine($"Введите данные для поезда {i + 1}:");
 
-                Console.Write("Ìåñòî íàçíà÷åíèÿ: ");
+                Console.Write("Место назначения: ");
                 string destination = Console.ReadLine();
 
-                Console.Write("Íîìåð ïîåçäà: ");
+                Console.Write("Номер поезда: ");
                 int trainNumber = int.Parse(Console.ReadLine());
 
-                Console.Write("Âðåìÿ îòïðàâëåíèÿ (HH:mm): ");
+                Console.Write("Время отправления (HH:mm): ");
                 TimeSpan departureTime = TimeSpan.Parse(Console.ReadLine());
 
                 station.AddTrain(new Train(destination, trainNumber, departureTime));
@@ -132,12 +133,12 @@ class Program
         }
         else
         {
-            Console.WriteLine("Îøèáêà! Ââåäèòå ïîëîæèòåëüíîå öåëîå ÷èñëî.");
+            Console.WriteLine("Ошибка! Введите положительное целое число.");
         }
     }
     static void ModifyByFullName()
     {
-        Console.Write("Ââåäèòå âðåìÿ äëÿ ïðîâåðêè äâèæåíèÿ ïîåçäîâ ïîñëå (HH:mm): ");
+        Console.Write("Введите время для проверки движения поездов после (HH:mm): ");
         TimeSpan timeToCheck = TimeSpan.Parse(Console.ReadLine());
 
         station.DisplayTrainsAfter(timeToCheck);
