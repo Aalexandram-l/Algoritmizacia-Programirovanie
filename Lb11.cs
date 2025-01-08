@@ -94,7 +94,7 @@ class Program
                     FillTrains();
                     break;
                 case "2":
-                    ModifyByFullName();
+                    TimebasedTrainSearch();
                     break;
                 case "3":
                     return;
@@ -136,7 +136,7 @@ class Program
             Console.WriteLine("Ошибка! Введите положительное целое число.");
         }
     }
-    static void ModifyByFullName()
+    static void TimebasedTrainSearch()
     {
         Console.Write("Введите время для проверки движения поездов после (HH:mm): ");
         TimeSpan timeToCheck = TimeSpan.Parse(Console.ReadLine());
